@@ -19,10 +19,10 @@ window.setInterval(function () {
         let next = null;
         let $pre_section = $(".section-video-name.video-active").parents('.tree-section-item').next();
         $pre_section.click();
-        $pre_section = $pre_section.find('.tree-section-item__name:first');
-        if ($pre_section.text().indexOf('测试题')<0) {
-            $pre_section.click();
-            next = $pre_section.next().find('.element-wrap');
+        let $next_section = $pre_section.find('.tree-section-item__name:first');
+        if ($next_section.find('i').length) {
+            $next_section.find('i.el-icon-arrow-down').click();
+            next = $next_section.next().find('.element-wrap');
         }
 
         if (!next) {
@@ -33,7 +33,6 @@ window.setInterval(function () {
 
                 $chapter.find('.tree-chapter-item__name:first').click();
             }
-            debugger
             // 获取第一节
             let $section = $chapter.find('.tree-section-item__name:first');
             if (!($section.next().find('.section-video-name').length)) {
@@ -58,7 +57,7 @@ window.setInterval(function () {
 
             });
         }
-        if(window.currentTime==current_video.currentTime){
+        if(current_video.currentTime!=0 && window.currentTime==current_video.currentTime){
             window.counter+=1;
             if(window.counter>=5){
                 window.counter = 0;
