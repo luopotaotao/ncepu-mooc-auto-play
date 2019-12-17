@@ -8,7 +8,8 @@
 // ==/UserScript==
 
 
-
+window.counter = 0;
+window.currentTime = 0;
 window.setInterval(function () {
     let current_video = $('video')[0];
     if(!current_video){
@@ -57,6 +58,15 @@ window.setInterval(function () {
 
             });
         }
-
+        if(window.currentTime==current_video.currentTime){
+            window.counter+=1;
+            if(window.counter>=5){
+                window.counter = 0;
+                window.location.reload(true)
+            }
+        }else{
+            window.currentTime = current_video.currentTime;
+            window.counter = 0;
+        }
     }
 }, 1000);
